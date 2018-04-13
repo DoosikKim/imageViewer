@@ -8,14 +8,6 @@ public class Item {
     String imageTitle;
     String imageUrl;
 
-    public String getImageTitle() {
-        return imageTitle;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
     public Item(String imageTitle, String imageUrl) {
         this.imageTitle = imageTitle;
         this.imageUrl = imageUrl;

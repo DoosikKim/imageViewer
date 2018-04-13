@@ -21,10 +21,41 @@ public class MainViewModel implements BaseViewModel {
     public Activity activity;
     public String httpAddress;
 
+    RecyclerView recyclerView;
+    ImageRecyclerViewAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+
     @Override
-    public void onCreate(UrlLoadListener listener) {
+    public void onCreate() {
+        initRecyclerView();
         ImageUrlExtractor urlConnector = new ImageUrlExtractor();
-        urlConnector.request(httpAddress, listener);
+        urlConnector.request(httpAddress, new MainViewModel.UrlLoadListener() {
+            @Override
+            public void onComplete(final ArrayList<Item> itemList) {
+                adapter.addMoreItems(itemList);
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+            @Override
+            public void onError(int errorCode, String errorMessage) {
+                Logger.e("errorCode = " + errorCode + ", errorMessage = " + errorMessage);
+                Toast.makeText(activity, "errorCode = " + errorCode + ", errorMessage = " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initRecyclerView() {
+        recyclerView = activity.findViewById(R.id.recycler_view);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new ImageRecyclerViewAdapter(activity);
+        recyclerView.setAdapter(adapter);
     }
 
 

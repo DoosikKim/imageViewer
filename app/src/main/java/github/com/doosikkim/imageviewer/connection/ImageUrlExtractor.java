@@ -26,7 +26,9 @@ public class ImageUrlExtractor {
                 Document document;
                 try {
 
-                    String hostName = new URL(httpAddress).getHost();
+                    URL url = new URL(httpAddress);
+                    String protocol = url.getProtocol();
+                    String hostName = url.getHost();
 
                     ArrayList<Item> resultArrayList = new ArrayList<>();
                     document = Jsoup.connect(httpAddress).get();
@@ -34,7 +36,7 @@ public class ImageUrlExtractor {
 
                     for (int i = 0; i < images.size(); i++) {
                         String src = images.get(i).attr("src");
-                        resultArrayList.add(new Item(src.substring(src.lastIndexOf("/") + 1), hostName + src));
+                        resultArrayList.add(new Item(src.substring(src.lastIndexOf("/") + 1), protocol + "://" + hostName + src));
                     }
 
                     Logger.d("url size = " + resultArrayList.size());
