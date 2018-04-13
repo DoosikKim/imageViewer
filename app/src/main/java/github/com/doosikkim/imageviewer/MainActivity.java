@@ -1,5 +1,6 @@
 package github.com.doosikkim.imageviewer;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -20,7 +21,10 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.onCreate();
     }
 
-
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     @Override
     protected void onResume() {
