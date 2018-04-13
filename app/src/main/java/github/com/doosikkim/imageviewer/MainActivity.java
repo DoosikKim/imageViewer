@@ -3,6 +3,7 @@ package github.com.doosikkim.imageviewer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import github.com.doosikkim.imageviewer.R;
 import github.com.doosikkim.imageviewer.viewmodel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {

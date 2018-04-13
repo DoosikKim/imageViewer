@@ -3,6 +3,8 @@ package github.com.doosikkim.imageviewer.viewmodel;
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,12 +23,16 @@ public class MainViewModel implements BaseViewModel {
     public Activity activity;
     public String httpAddress;
 
+    private ProgressBar spinner;
+
     RecyclerView recyclerView;
     ImageRecyclerViewAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
 
     @Override
     public void onCreate() {
+        spinner = activity.findViewById(R.id.progressBar);
+        startProgressBar();
         initRecyclerView();
         ImageUrlExtractor urlConnector = new ImageUrlExtractor();
         urlConnector.request(httpAddress, new MainViewModel.UrlLoadListener() {
@@ -37,6 +43,7 @@ public class MainViewModel implements BaseViewModel {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
+                        endProgressBar();
                     }
                 });
             }
@@ -47,6 +54,14 @@ public class MainViewModel implements BaseViewModel {
                 Toast.makeText(activity, "errorCode = " + errorCode + ", errorMessage = " + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void startProgressBar() {
+        spinner.setVisibility(View.VISIBLE);
+    }
+
+    private void endProgressBar() {
+        spinner.setVisibility(View.GONE);
     }
 
     private void initRecyclerView() {
