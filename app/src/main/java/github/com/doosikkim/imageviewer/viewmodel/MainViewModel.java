@@ -1,6 +1,7 @@
 package github.com.doosikkim.imageviewer.viewmodel;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -13,6 +14,7 @@ import github.com.doosikkim.imageviewer.ImageRecyclerViewAdapter;
 import github.com.doosikkim.imageviewer.Item;
 import github.com.doosikkim.imageviewer.Logger;
 import github.com.doosikkim.imageviewer.R;
+import github.com.doosikkim.imageviewer.cache.CacheManager;
 import github.com.doosikkim.imageviewer.connection.ImageUrlExtractor;
 
 /**
@@ -25,9 +27,9 @@ public class MainViewModel implements BaseViewModel {
 
     private ProgressBar spinner;
 
-    RecyclerView recyclerView;
-    ImageRecyclerViewAdapter adapter;
-    RecyclerView.LayoutManager layoutManager;
+    private RecyclerView recyclerView;
+    private ImageRecyclerViewAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     public void onCreate() {
@@ -67,7 +69,7 @@ public class MainViewModel implements BaseViewModel {
     private void initRecyclerView() {
         recyclerView = activity.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new ImageRecyclerViewAdapter(activity);
         recyclerView.setAdapter(adapter);
