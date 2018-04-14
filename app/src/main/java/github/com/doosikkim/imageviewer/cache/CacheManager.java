@@ -28,7 +28,9 @@ public class CacheManager {
             return imageBitmap;
         }
         imageBitmap = diskCache.getBitmapFromDiskCache(key);
-        memoryCache.addBitmapToMemoryCache(key, imageBitmap);
+        if (imageBitmap != null) {
+            memoryCache.addBitmapToMemoryCache(key, imageBitmap);
+        }
         return imageBitmap;
     }
 }
