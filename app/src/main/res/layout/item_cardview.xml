@@ -1,37 +1,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:cardCornerRadius="10dp"-->
-        <!--app:cardElevation="10dp"-->
-        <!--app:cardUseCompatPadding="true">-->
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 tools:scaleType="center"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher"
+                android:layout_height="match_parent"
                 android:id="@+id/imageview">
             </ImageView>
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/imagetitle"
                 android:gravity="center"
                 tools:textAppearance="?android:attr/textAppearanceListItemSmall"
                 tools:minHeight="?android:attr/listPreferredItemHeightSmall">
             </TextView>
         </LinearLayout>
-    <!--</android.support.v7.widget.CardView>-->
 </RelativeLayout>

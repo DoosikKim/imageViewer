@@ -51,7 +51,7 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter {
             final ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
             final Item currentItem = items.get(position);
             imageViewHolder.textView.setText(currentItem.imageTitle);
-            imageViewHolder.imageView.setImageBitmap(null);
+            imageViewHolder.imageView.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
 
             Logger.d("title = " + currentItem.imageTitle);
             Logger.d("url = " + currentItem.imageUrl);

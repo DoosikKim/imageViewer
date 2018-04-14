@@ -26,6 +26,7 @@ public class ImageLoader {
                     listener.onComplete(bitmap);
                 } catch (IOException e) {
                     Logger.e("ImageLoader.request IOException : " + e.getMessage());
+                    listener.onError(-2, "IOException");
                 }
             }
         };
