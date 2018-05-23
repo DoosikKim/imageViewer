@@ -53,6 +53,7 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter {
             imageViewHolder.textView.setText(currentItem.imageTitle);
             imageViewHolder.imageView.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
 
+            Logger.d("position = " + position);
             Logger.d("title = " + currentItem.imageTitle);
             Logger.d("url = " + currentItem.imageUrl);
 
@@ -68,8 +69,10 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter {
                         ((Activity)context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                imageViewHolder.imageView.setImageBitmap(bitmap);
-                                setAnimation(imageViewHolder.imageView, position);
+                                if (imageViewHolder.getAdapterPosition() == position) {
+                                    imageViewHolder.imageView.setImageBitmap(bitmap);
+                                    setAnimation(imageViewHolder.imageView, position);
+                                }
                             }
                         });
                     }
@@ -79,8 +82,10 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter {
                         ((Activity)context).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                showDefaultImage(imageViewHolder.imageView);
-                                setAnimation(imageViewHolder.imageView, position);
+                                if (imageViewHolder.getAdapterPosition() == position) {
+                                    showDefaultImage(imageViewHolder.imageView);
+                                    setAnimation(imageViewHolder.imageView, position);
+                                }
                             }
                         });
                     }
